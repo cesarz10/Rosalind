@@ -19,58 +19,16 @@ def graph(dict, k):
         for t, val_t in seq_dict.items():
             prefix = val_t[1][:k] # first k nucleotides
 
-            if( t == s ): # order doesn't matter, and directed loops are prohibited
-                continue
-            else:
+            if( t != s ): # Directed loops are not valid
                 if(suffix == prefix): # if they overlap
-                    # adj_list.append([s, t])
-                    if(int(s) > int(t)):
-                        adj_list.append([t, s])
-                    else:
-                        adj_list.append([s, t])
-
-    print(len(adj_list))
-    adj_list = natsorted(adj_list)
+                    adj_list.append([s, t])
+                    
     return adj_list
 
-
-
-
-# adjacency_list = graph2(seq_dict, 3)
-# print(adjacency_list)
 adjacency_list = graph(seq_dict, 3)
-# print(adjacency_list)
 
+# Printing expected result with the specified formatting
 print('\n')
 for vect in adjacency_list:
     print(f'{seq_dict[vect[0]][0]} {seq_dict[vect[1]][0]}')
 print('\n')
-
-
-
-
-
-
-
-
-# ------------------------------------------
-# function that takes the dict of sequences and a value of k (length) and returns the adjacency list
-def graph2(dict, k):
-    seq_dict = dict
-    adj_list = []
-
-    for s, val_s in seq_dict.items():        
-        suffix = val_s[1][-k:] # last k nucleotides
-        
-        for t in range(int(s), len(seq_dict.keys())):
-            # print(f's: {s}\nt: {t}')
-            prefix = seq_dict[f'{t}'][1][:k] # first k nucleotides
-
-            if( [s, t] in adj_list or [t, s] in adj_list or t == s ): # order doesn't matter, and directed loops are prohibited
-                continue
-            else:
-                if(suffix == prefix): # if they overlap    
-                    adj_list.append([s, str(t)])
-            
-    # print(adj_list)
-    return adj_list
