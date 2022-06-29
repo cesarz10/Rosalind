@@ -1,5 +1,4 @@
 from Bio import SeqIO
-from natsort import natsorted
 
 input_file = 'Overlap_Graphs/rosalind_grph.txt'
 seq_dict = {} # dictionary of names and sequences
